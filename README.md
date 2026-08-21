@@ -1,106 +1,104 @@
 # 📈 Product & Growth Intelligence Platform
 
-An interactive data analytics and decision-support application built with Python and Streamlit to investigate user behavior, engagement, conversion performance, retention signals, and growth opportunities.
+An interactive product analytics and decision-support application built to investigate user behavior, acquisition, engagement, funnel performance, retention, and growth opportunities.
 
-The platform transforms raw user event data into actionable product and growth insights through interactive filtering, user segmentation, funnel analysis, and behavioral metrics.
+🔗 **Live Application:** https://kaustubhi-growth-intelligence.streamlit.app/
 
 ---
 
-## 🎯 Project Overview
+## 🚀 Project Overview
 
-Understanding how users interact with a digital product is essential for improving growth, engagement, and conversion.
+Product teams generate large volumes of event-level data, but raw data alone does not provide actionable insights.
 
-This project analyzes user activity and provides an interactive platform where users can investigate:
+The **Product & Growth Intelligence Platform** transforms user activity data into an interactive analytics application where users can explore:
 
-- User traffic and activity
-- New and returning users
-- User engagement segments
-- Product interaction events
-- Add-to-cart behavior
-- Transactions
+- User acquisition
+- Product engagement
+- User behavior
 - Conversion funnel performance
-- User behavior over selected time periods
-- Growth opportunities across different user groups
+- Add-to-cart activity
+- Transactions
+- Retention
+- Growth trends
+- User segmentation
+- Product opportunities
 
-The application is designed as an interactive decision-support tool rather than a static dashboard.
+The application is designed as an interactive **decision-support platform**, rather than a static dashboard.
 
 ---
 
-## 💼 Business Problem
+## 🎯 Business Problem
 
-Product and growth teams need answers to questions such as:
+A product or growth team needs answers to important questions such as:
 
-- How many users are visiting the platform?
-- How many of those users are new?
-- Which users are highly engaged?
-- Which users show low engagement?
+- How many users are visiting the product?
+- How actively are users engaging with the platform?
+- Where are users dropping off in the conversion funnel?
 - How many users add products to their cart?
 - How many users complete transactions?
-- Where are users dropping off in the conversion funnel?
-- How does user behavior change across different time periods?
-- Which user groups provide the strongest growth opportunities?
+- Which user groups are most valuable?
+- How is user activity changing over time?
+- Where are the biggest opportunities for product growth?
 
-This platform provides a centralized interface for exploring these questions.
+Analyzing millions of raw event records manually is inefficient.
+
+This project solves that problem by converting processed event-level data into an interactive application for exploring product and growth performance.
 
 ---
 
 ## ✨ Key Features
 
-### 1. Interactive Date Analysis
+### 📊 Growth Overview
 
-Users can select a custom date range to analyze product performance during a specific period.
-
-### 2. User Segmentation
-
-The application supports analysis across multiple user groups:
-
-- All Users
-- Low Engagement Users
-- High Engagement Users
-- Returning Users
-- Converted Users
-
-This allows user behavior to be compared across meaningful segments.
-
-### 3. Growth Overview
-
-The platform provides key performance indicators including:
+Monitor key product and growth metrics, including:
 
 - Total Visitors
 - Total Events
 - Add-to-Cart Events
 - Transactions
 
-### 4. Conversion Funnel Analysis
+Users can compare current activity with the previous available period.
 
-The application measures important conversion stages:
+---
 
-**View → Cart → Transaction**
+### 👥 User Group Analysis
 
-Key conversion metrics include:
+Analyze different user populations and investigate behavioral differences between user groups.
 
-- View-to-Cart Conversion
-- Cart-to-Transaction Conversion
-- Overall Conversion
+The application allows users to explore the data dynamically instead of relying on fixed insights.
 
-### 5. New User Analysis
+---
 
-The platform can identify users appearing for the first time during the selected analysis period.
+### 📈 Interactive Time Analysis
 
-This helps distinguish between:
+Users can select different analysis periods to investigate changes in product activity and growth trends over time.
 
-- New users
-- Existing users
-- Returning users
+---
 
-### 6. Interactive Decision Support
+### 🛒 Funnel Analysis
 
-Instead of presenting only static charts, the application allows the user to dynamically change:
+Analyze the user journey through important product actions.
 
-- Analysis period
-- User group
+The platform helps identify potential drop-off points between stages such as:
 
-All relevant metrics update based on the selected filters.
+1. User visit
+2. Product interaction
+3. Add to cart
+4. Transaction
+
+---
+
+### 📦 Product Engagement Analysis
+
+Investigate how users interact with products and identify patterns in engagement.
+
+---
+
+### 🔍 Interactive Decision Support
+
+The platform is designed for exploration.
+
+Users can adjust filters and controls to investigate different questions without changing the underlying code.
 
 ---
 
@@ -109,10 +107,14 @@ All relevant metrics update based on the selected filters.
 | Technology | Purpose |
 |---|---|
 | Python | Core programming language |
-| Streamlit | Interactive web application |
-| Pandas | Data manipulation and analysis |
+| Pandas | Data processing and analysis |
 | NumPy | Numerical operations |
+| Streamlit | Interactive web application |
 | Plotly | Interactive visualizations |
+| Git | Version control |
+| GitHub | Code hosting |
+| Git LFS | Large dataset versioning |
+| Streamlit Community Cloud | Application deployment |
 
 ---
 
@@ -128,26 +130,27 @@ All relevant metrics update based on the selected filters.
 │   └── app.py
 │
 ├── data/
-│   └── Dataset files
+│   ├── processed/
+│   │   ├── events_clean.csv
+│   │   ├── events_enriched.csv
+│   │   ├── session_summary.csv
+│   │   └── visitor_summary.csv
+│   │
+│   └── ...
 │
 ├── notebooks/
-│   └── Exploratory analysis notebooks
 │
 ├── outputs/
-│   └── Generated outputs
 │
 ├── reports/
-│   └── Analysis reports and visualizations
 │
 ├── sql/
-│   └── SQL queries and analysis
 │
 ├── src/
-│   └── Supporting source code
 │
 ├── tests/
-│   └── Testing files
 │
+├── .gitattributes
 ├── .gitignore
 ├── README.md
 └── requirements.txt
