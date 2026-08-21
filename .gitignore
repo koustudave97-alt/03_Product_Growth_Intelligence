@@ -1,59 +1,73 @@
-# Python cache
+# ==================================================
+# Python
+# ==================================================
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
 # Virtual environments
 venv/
 env/
+ENV/
 .venv/
 
-# Environment variables and secrets
-.env
-.env.*
-
-# Jupyter
+# Jupyter Notebook
 .ipynb_checkpoints/
 
-# IDE settings
+# IDEs and editors
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # Operating system files
 .DS_Store
 Thumbs.db
 
-# Generated files
-outputs/
-reports/*.csv
-reports/*.png
+# Python testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
 
-# Python build files
-build/
-dist/
-*.egg-info/
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-**/.ipynb_checkpoints/
+# Streamlit secrets
+.streamlit/secrets.toml
 
-# Python cache
-__pycache__/
-*.py[cod]
+# Temporary files
+*.log
+*.tmp
 
-# Generated output files
-outputs/
-reports/*.csv
+# ==================================================
+# PROJECT DATA
+# ==================================================
 
-# System files
-.DS_Store
-Thumbs.db
-# Large raw and processed datasets
+# Ignore raw/original data
 data/raw/
-data/processed/
 
-# Generated outputs
+# Ignore the large event-level processed file
+# This file is ~238 MB and exceeds GitHub's 100 MB limit
+data/processed/events_clean.csv
+
+# Ignore generated outputs
 outputs/
-reports/*.csv
-
-# Jupyter checkpoints
-.ipynb_checkpoints/
+# Large processed files - excluded from normal Git
+data/processed/events_enriched.csv
+data/processed/session_summary.csv
+data/processed/visitor_summary.csv
