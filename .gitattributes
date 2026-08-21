@@ -1,0 +1,4 @@
+data/processed/events_clean.csv filter=lfs diff=lfs merge=lfs -text
+data/processed/events_enriched.csv filter=lfs diff=lfs merge=lfs -text
+data/processed/session_summary.csv filter=lfs diff=lfs merge=lfs -text
+data/processed/visitor_summary.csv filter=lfs diff=lfs merge=lfs -text
