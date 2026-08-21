@@ -1,0 +1,59 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Generated files
+outputs/
+reports/*.csv
+reports/*.png
+
+# Python build files
+build/
+dist/
+*.egg-info/
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Generated output files
+outputs/
+reports/*.csv
+
+# System files
+.DS_Store
+Thumbs.db
+# Large raw and processed datasets
+data/raw/
+data/processed/
+
+# Generated outputs
+outputs/
+reports/*.csv
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
