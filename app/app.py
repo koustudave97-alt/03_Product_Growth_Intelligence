@@ -100,8 +100,8 @@ def ensure_event_flags(data):
 # FAST DATA LOADING
 # ============================================================
 
-@st.cache_data(show_spinner=False)
-def load_events_data():
+@st.cache_resource
+def load_data():
 
     # Load only datasets actually used by this application.
     # This improves startup performance.
