@@ -1942,245 +1942,349 @@ elif page == "🔄 Retention & Cohorts":
 
 elif page == "👥 User Segmentation":
 
-    st.header(
-        "User Segmentation Explorer"
-    )
+    try:
 
-    st.write(
-        "Investigate mutually exclusive behavioral segments "
-        "created from the complete observation history."
-    )
-
-    segment_to_analyze = st.selectbox(
-        "Select Segment",
-        segment_options[1:]
-    )
-
-    run_segment = st.button(
-        "👥 Analyze Segment",
-        use_container_width=True
-    )
-
-    if run_segment:
-
-        segment_visitors = set(
-            visitor_segments.loc[
-                visitor_segments[
-                    "segment"
-                ] == segment_to_analyze,
-                "visitorid"
-            ]
+        st.header(
+            "User Segmentation Explorer"
         )
 
-        segment_events = (
-            filter_events(
+        st.write(
+            "Investigate mutually exclusive behavioral segments "
+            "created from the complete observation history."
+        )
+
+        # ----------------------------------------------------
+        # DEBUG CHECKS
+        # ----------------------------------------------------
+
+        st.caption(
+            f"Available segments: {len(segment_options) - 1}"
+        )
+
+        segment_to_analyze = st.selectbox(
+            "Select Segment",
+            segment_options[1:]
+        )
+
+        run_segment = st.button(
+            "👥 Analyze Segment",
+            use_container_width=True
+        )
+
+        if run_segment:
+
+            # ------------------------------------------------
+            # FIND VISITORS IN SELECTED SEGMENT
+            # ------------------------------------------------
+
+            segment_features = (
+                visitor_segments.loc[
+                    visitor_segments["segment"]
+                    == segment_to_analyze
+                ].copy()
+            )
+
+            if segment_features.empty:
+
+                st.warning(
+                    f"No visitors found in segment: "
+                    f"{segment_to_analyze}"
+                )
+
+                st.stop()
+
+            segment_visitors = set(
+                segment_features["visitorid"]
+            )
+
+            # ------------------------------------------------
+            # FILTER EVENTS
+            # ------------------------------------------------
+
+            segment_events = filter_events(
                 events,
                 start_date,
                 end_date,
                 segment_visitors
             )
-        )
 
-        segment_features = (
-            visitor_segments.loc[
-                visitor_segments[
-                    "segment"
-                ] == segment_to_analyze
-            ]
-        )
+            # ------------------------------------------------
+            # CALCULATE METRICS
+            # ------------------------------------------------
 
-        segment_metrics = (
-            calculate_period_metrics(
+            segment_metrics = calculate_period_metrics(
                 segment_events
             )
-        )
 
-        col1, col2, col3, col4 = (
-            st.columns(4)
-        )
+            # ------------------------------------------------
+            # KPI METRICS
+            # ------------------------------------------------
 
-        col1.metric(
-            "Segment Visitors",
-            integer_format(
-                len(segment_features)
+            col1, col2, col3, col4 = st.columns(4)
+
+            col1.metric(
+                "Segment Visitors",
+                integer_format(
+                    len(segment_features)
+                )
             )
-        )
 
-        col2.metric(
-            "Events in Period",
-            integer_format(
-                segment_metrics["events"]
+            col2.metric(
+                "Events in Period",
+                integer_format(
+                    segment_metrics.get("events", 0)
+                )
             )
-        )
 
-        col3.metric(
-            "Transactions",
-            integer_format(
-                segment_metrics[
-                    "transactions"
-                ]
-            )
-        )
-
-        col4.metric(
-            "View → Transaction",
-            percentage(
-                segment_metrics[
-                    "overall_conversion"
-                ]
-            )
-        )
-
-        st.divider()
-
-        st.subheader(
-            "Segment Profile"
-        )
-
-        profile = pd.DataFrame(
-            {
-                "Metric": [
-
-                    "Average Active Days",
-
-                    "Average Total Events",
-
-                    "Average View Events",
-
-                    "Average Cart Events",
-
-                    "Average Transaction Events",
-
-                    "Average Recency Days"
-
-                ],
-
-                "Value": [
-
-                    round(
-                        segment_features[
-                            "active_days"
-                        ].mean(),
-                        2
-                    ),
-
-                    round(
-                        segment_features[
-                            "total_events"
-                        ].mean(),
-                        2
-                    ),
-
-                    round(
-                        segment_features[
-                            "view_events"
-                        ].mean(),
-                        2
-                    ),
-
-                    round(
-                        segment_features[
-                            "cart_events"
-                        ].mean(),
-                        2
-                    ),
-
-                    round(
-                        segment_features[
-                            "transaction_events"
-                        ].mean(),
-                        2
-                    ),
-
-                    round(
-                        segment_features[
-                            "recency_days"
-                        ].mean(),
-                        2
+            col3.metric(
+                "Transactions",
+                integer_format(
+                    segment_metrics.get(
+                        "transactions",
+                        0
                     )
+                )
+            )
 
-                ]
-            }
+            col4.metric(
+                "View → Transaction",
+                percentage(
+                    segment_metrics.get(
+                        "overall_conversion",
+                        0
+                    )
+                )
+            )
+
+            st.divider()
+
+            # ------------------------------------------------
+            # SEGMENT PROFILE
+            # ------------------------------------------------
+
+            st.subheader(
+                "Segment Profile"
+            )
+
+            profile_columns = [
+                "active_days",
+                "total_events",
+                "view_events",
+                "cart_events",
+                "transaction_events",
+                "recency_days"
+            ]
+
+            missing_columns = [
+                column
+                for column in profile_columns
+                if column not in segment_features.columns
+            ]
+
+            if missing_columns:
+
+                st.error(
+                    "Missing required columns: "
+                    + ", ".join(missing_columns)
+                )
+
+                st.write(
+                    "Available columns:"
+                )
+
+                st.write(
+                    list(segment_features.columns)
+                )
+
+                st.stop()
+
+            profile = pd.DataFrame(
+                {
+                    "Metric": [
+
+                        "Average Active Days",
+
+                        "Average Total Events",
+
+                        "Average View Events",
+
+                        "Average Cart Events",
+
+                        "Average Transaction Events",
+
+                        "Average Recency Days"
+
+                    ],
+
+                    "Value": [
+
+                        round(
+                            segment_features[
+                                "active_days"
+                            ].mean(),
+                            2
+                        ),
+
+                        round(
+                            segment_features[
+                                "total_events"
+                            ].mean(),
+                            2
+                        ),
+
+                        round(
+                            segment_features[
+                                "view_events"
+                            ].mean(),
+                            2
+                        ),
+
+                        round(
+                            segment_features[
+                                "cart_events"
+                            ].mean(),
+                            2
+                        ),
+
+                        round(
+                            segment_features[
+                                "transaction_events"
+                            ].mean(),
+                            2
+                        ),
+
+                        round(
+                            segment_features[
+                                "recency_days"
+                            ].mean(),
+                            2
+                        )
+
+                    ]
+                }
+            )
+
+            st.dataframe(
+                profile,
+                use_container_width=True,
+                hide_index=True
+            )
+
+            st.divider()
+
+            # ------------------------------------------------
+            # SEGMENTATION RULEBOOK
+            # ------------------------------------------------
+
+            st.subheader(
+                "Segmentation Rulebook"
+            )
+
+            rulebook = pd.DataFrame(
+                {
+                    "Segment": [
+
+                        "Repeat Buyers",
+
+                        "One-Time Buyers",
+
+                        "High-Intent Visitors",
+
+                        "Cart Abandoners",
+
+                        "At-Risk Visitors",
+
+                        "New Visitors",
+
+                        "Highly Engaged Browsers",
+
+                        "Other Visitors"
+
+                    ],
+
+                    "Rule": [
+
+                        "At least 2 unique transactions",
+
+                        "Exactly 1 unique transaction",
+
+                        "No transaction and at least "
+                        f"{segment_thresholds['high_intent_cart_threshold']} "
+                        "cart events",
+
+                        "Cart activity below the high-intent threshold "
+                        "and no transaction",
+
+                        "No transaction, activity on multiple days, "
+                        "and at least 14 days of inactivity",
+
+                        "First observed activity from "
+                        f"{segment_thresholds['new_visitor_cutoff'].date()} "
+                        "to the end of the observation window",
+
+                        "No cart or transaction activity, at least "
+                        f"{segment_thresholds['active_day_threshold']} "
+                        "active days, and at least "
+                        f"{segment_thresholds['view_event_threshold']} "
+                        "view events",
+
+                        "Remaining visitors"
+
+                    ]
+                }
+            )
+
+            st.dataframe(
+                rulebook,
+                use_container_width=True,
+                hide_index=True
+            )
+
+        else:
+
+            st.info(
+                "Select a behavioral segment and click "
+                "'Analyze Segment'."
+            )
+
+    except Exception as e:
+
+        st.error(
+            "User Segmentation encountered an error."
         )
 
-        st.dataframe(
-            profile,
-            use_container_width=True,
-            hide_index=True
-        )
+        st.exception(e)
 
-        st.divider()
+        with st.expander(
+            "Debug Information"
+        ):
 
-        st.subheader(
-            "Segmentation Rulebook"
-        )
+            st.write(
+                "Selected segment:",
+                segment_to_analyze
+                if "segment_to_analyze" in locals()
+                else "Not available"
+            )
 
-        rulebook = pd.DataFrame(
-            {
-                "Segment": [
+            st.write(
+                "visitor_segments columns:"
+            )
 
-                    "Repeat Buyers",
+            if "visitor_segments" in globals():
 
-                    "One-Time Buyers",
+                st.write(
+                    list(visitor_segments.columns)
+                )
 
-                    "High-Intent Visitors",
+            st.write(
+                "Events columns:"
+            )
 
-                    "Cart Abandoners",
+            if "events" in globals():
 
-                    "At-Risk Visitors",
-
-                    "New Visitors",
-
-                    "Highly Engaged Browsers",
-
-                    "Other Visitors"
-
-                ],
-
-                "Rule": [
-
-                    "At least 2 unique transactions",
-
-                    "Exactly 1 unique transaction",
-
-                    "No transaction and at least "
-                    f"{segment_thresholds['high_intent_cart_threshold']} "
-                    "cart events",
-
-                    "Cart activity below the high-intent threshold "
-                    "and no transaction",
-
-                    "No transaction, activity on multiple days, "
-                    "and at least 14 days of inactivity",
-
-                    "First observed activity from "
-                    f"{segment_thresholds['new_visitor_cutoff'].date()} "
-                    "to the end of the observation window",
-
-                    "No cart or transaction activity, at least "
-                    f"{segment_thresholds['active_day_threshold']} "
-                    "active days, and at least "
-                    f"{segment_thresholds['view_event_threshold']} "
-                    "view events",
-
-                    "Remaining visitors"
-
-                ]
-            }
-        )
-
-        st.dataframe(
-            rulebook,
-            use_container_width=True,
-            hide_index=True
-        )
-
-    else:
-
-        st.info(
-            "Select a behavioral segment and click "
-            "'Analyze Segment'."
-        )
+                st.write(
+                    list(events.columns)
+                )
 
 
 # ============================================================
