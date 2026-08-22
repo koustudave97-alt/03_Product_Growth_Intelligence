@@ -8,8 +8,7 @@ Built as a Data Science portfolio project using Python, Pandas, Plotly, and Stre
 
 ## 🚀 Live Application
 
-🔗 **Streamlit App:** Add your deployed Streamlit link here
-
+🔗 **Live Streamlit App:** https://kaustubhi-growth-intelligence.streamlit.app/
 ---
 
 ## 📌 Project Overview
