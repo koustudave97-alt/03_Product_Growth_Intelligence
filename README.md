@@ -1,104 +1,193 @@
 # 📈 Product & Growth Intelligence Platform
 
-An interactive product analytics and decision-support application built to investigate user behavior, acquisition, engagement, funnel performance, retention, and growth opportunities.
+An interactive data analytics and decision-support application designed to investigate user behavior, acquisition, funnel performance, product engagement, retention, segmentation, and growth opportunities.
 
-🔗 **Live Application:** https://kaustubhi-growth-intelligence.streamlit.app/
+Built as a Data Science portfolio project using Python, Pandas, Plotly, and Streamlit.
 
 ---
 
-## 🚀 Project Overview
+## 🚀 Live Application
 
-Product teams generate large volumes of event-level data, but raw data alone does not provide actionable insights.
+🔗 **Streamlit App:** Add your deployed Streamlit link here
 
-The **Product & Growth Intelligence Platform** transforms user activity data into an interactive analytics application where users can explore:
+---
+
+## 📌 Project Overview
+
+Understanding user behavior is essential for product growth. Raw event-level data can contain millions of interactions, making it difficult to identify meaningful business insights.
+
+The **Product & Growth Intelligence Platform** transforms user and event data into an interactive analytics application that helps investigate:
 
 - User acquisition
+- Visitor activity
+- Conversion funnels
 - Product engagement
-- User behavior
-- Conversion funnel performance
-- Add-to-cart activity
-- Transactions
-- Retention
-- Growth trends
+- User retention
 - User segmentation
-- Product opportunities
+- Growth opportunities
 
-The application is designed as an interactive **decision-support platform**, rather than a static dashboard.
+The application provides an interactive environment where users can filter data and explore important product and growth metrics.
 
 ---
 
 ## 🎯 Business Problem
 
-A product or growth team needs answers to important questions such as:
+Product and growth teams need answers to important questions such as:
 
-- How many users are visiting the product?
-- How actively are users engaging with the platform?
+- How many users are visiting the platform?
+- How many events are being generated?
 - Where are users dropping off in the conversion funnel?
-- How many users add products to their cart?
-- How many users complete transactions?
-- Which user groups are most valuable?
-- How is user activity changing over time?
-- Where are the biggest opportunities for product growth?
+- Which acquisition sources are performing best?
+- How are users engaging with products?
+- Are users returning over time?
+- Which user segments are most valuable?
+- Where are the biggest growth opportunities?
 
-Analyzing millions of raw event records manually is inefficient.
-
-This project solves that problem by converting processed event-level data into an interactive application for exploring product and growth performance.
+This project addresses these questions through an interactive analytics and decision-support application.
 
 ---
 
 ## ✨ Key Features
 
-### 📊 Growth Overview
+### 1. 📊 Growth Overview
 
-Monitor key product and growth metrics, including:
+Provides a high-level view of platform performance through important KPIs and trends.
+
+Key metrics include:
 
 - Total Visitors
 - Total Events
 - Add-to-Cart Events
 - Transactions
-
-Users can compare current activity with the previous available period.
-
----
-
-### 👥 User Group Analysis
-
-Analyze different user populations and investigate behavioral differences between user groups.
-
-The application allows users to explore the data dynamically instead of relying on fixed insights.
+- User Activity Trends
 
 ---
 
-### 📈 Interactive Time Analysis
+### 2. 📥 Acquisition Analysis
 
-Users can select different analysis periods to investigate changes in product activity and growth trends over time.
+Analyzes how users arrive on the platform and evaluates acquisition performance.
 
----
+Insights include:
 
-### 🛒 Funnel Analysis
-
-Analyze the user journey through important product actions.
-
-The platform helps identify potential drop-off points between stages such as:
-
-1. User visit
-2. Product interaction
-3. Add to cart
-4. Transaction
+- User acquisition channels
+- Source performance
+- Visitor distribution
+- Acquisition trends
+- High-performing channels
 
 ---
 
-### 📦 Product Engagement Analysis
+### 3. 🔻 Funnel Analysis
 
-Investigate how users interact with products and identify patterns in engagement.
+Analyzes the user journey through important stages of the product funnel.
+
+The analysis helps identify:
+
+- Funnel progression
+- Conversion performance
+- Drop-off points
+- Transaction completion
+- Potential friction in the user journey
 
 ---
 
-### 🔍 Interactive Decision Support
+### 4. 🛍️ Product Engagement
 
-The platform is designed for exploration.
+Investigates how users interact with products and product-related events.
 
-Users can adjust filters and controls to investigate different questions without changing the underlying code.
+Insights include:
+
+- Product interactions
+- Add-to-cart behavior
+- Engagement patterns
+- Product activity
+- User interaction trends
+
+---
+
+### 5. 🔄 Retention Analysis
+
+Analyzes returning user behavior and activity over time.
+
+The retention analysis helps understand:
+
+- Returning users
+- Repeat activity
+- User retention patterns
+- Long-term engagement
+- Changes in user activity
+
+---
+
+### 6. 👥 User Segmentation
+
+Groups users based on behavioral characteristics.
+
+Segmentation can help identify:
+
+- High-value users
+- Highly engaged users
+- Low-engagement users
+- Different behavioral patterns
+- Potential target groups
+
+---
+
+### 7. 💡 Growth Opportunities
+
+Highlights potential areas where product and growth improvements can be made.
+
+Examples include:
+
+- Improving funnel conversion
+- Reducing user drop-off
+- Increasing product engagement
+- Improving retention
+- Focusing on high-performing user segments
+
+---
+
+## 🖥️ Application Screenshots
+
+### 📊 Growth Overview
+
+![Growth Overview](assets/screenshots/01_growth_overview.png)
+
+---
+
+### 📥 Acquisition Analysis
+
+![Acquisition Analysis](assets/screenshots/02_acquisition_analysis.png)
+
+---
+
+### 🔻 Funnel Analysis
+
+![Funnel Analysis](assets/screenshots/03_funnel_analysis.png)
+
+---
+
+### 🛍️ Product Engagement
+
+![Product Engagement](assets/screenshots/04_product_engagement.png)
+
+---
+
+### 🔄 Retention Analysis
+
+![Retention Analysis](assets/screenshots/05_retention_analysis.png)
+
+---
+
+### 👥 User Segmentation
+
+![User Segmentation](assets/screenshots/06_user_segmentation.png)
+
+---
+
+### 💡 Growth Opportunities
+
+![Growth Opportunities](assets/screenshots/07_growth_opportunities.png)
 
 ---
 
@@ -106,15 +195,11 @@ Users can adjust filters and controls to investigate different questions without
 
 | Technology | Purpose |
 |---|---|
-| Python | Core programming language |
+| Python | Core application development |
 | Pandas | Data processing and analysis |
 | NumPy | Numerical operations |
-| Streamlit | Interactive web application |
 | Plotly | Interactive visualizations |
-| Git | Version control |
-| GitHub | Code hosting |
-| Git LFS | Large dataset versioning |
-| Streamlit Community Cloud | Application deployment |
+| Streamlit | Interactive web application |
 
 ---
 
@@ -123,34 +208,24 @@ Users can adjust filters and controls to investigate different questions without
 ```text
 03_Product_Growth_Intelligence/
 │
-├── .vscode/
-│   └── settings.json
-│
 ├── app/
 │   └── app.py
 │
 ├── data/
-│   ├── processed/
-│   │   ├── events_clean.csv
-│   │   ├── events_enriched.csv
-│   │   ├── session_summary.csv
-│   │   └── visitor_summary.csv
-│   │
-│   └── ...
+│   ├── raw/
+│   └── processed/
 │
-├── notebooks/
+├── assets/
+│   └── screenshots/
+│       ├── 01_growth_overview.png
+│       ├── 02_acquisition_analysis.png
+│       ├── 03_funnel_analysis.png
+│       ├── 04_product_engagement.png
+│       ├── 05_retention_analysis.png
+│       ├── 06_user_segmentation.png
+│       └── 07_growth_opportunities.png
 │
-├── outputs/
-│
-├── reports/
-│
-├── sql/
-│
-├── src/
-│
-├── tests/
-│
-├── .gitattributes
-├── .gitignore
+├── requirements.txt
 ├── README.md
-└── requirements.txt
+├── .gitignore
+└── .gitattributes
