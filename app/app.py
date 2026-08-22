@@ -974,7 +974,7 @@ page = st.sidebar.radio(
 
     ]
 )
-
+st.sidebar.divider()
 st.sidebar.markdown(
     """
     ### 👩‍💻 Kaustubhi Dave
