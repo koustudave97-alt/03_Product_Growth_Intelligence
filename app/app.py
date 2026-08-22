@@ -782,14 +782,6 @@ def build_visitor_segments(full_events):
 # SIDEBAR
 # ============================================================
 
-st.sidebar.title(
-    "📈 Growth Intelligence"
-)
-
-st.sidebar.caption(
-    "Product & Growth Intelligence Platform"
-)
-
 st.sidebar.divider()
 st.sidebar.title(
     "📈 Growth Intelligence"
