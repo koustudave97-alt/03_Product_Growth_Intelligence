@@ -793,24 +793,6 @@ st.sidebar.caption(
 
 st.sidebar.divider()
 
-st.sidebar.markdown(
-    """
-    ### 👩‍💻 Kaustubhi Dave
-
-    **M.Sc. Mathematics & Data Science**
-
-    📌 Data Science Portfolio Project
-
-    **Version 1.0.0**
-    """
-)
-
-st.sidebar.caption(
-    "Built with Python • Pandas • Plotly • Streamlit"
-)
-
-st.sidebar.divider()
-
 
 # ============================================================
 # ANALYSIS CONTROLS
@@ -993,6 +975,23 @@ page = st.sidebar.radio(
     ]
 )
 
+st.sidebar.markdown(
+    """
+    ### 👩‍💻 Kaustubhi Dave
+
+    **M.Sc. Mathematics & Data Science**
+
+    📌 Data Science Portfolio Project
+
+    **Version 1.0.0**
+    """
+)
+
+st.sidebar.caption(
+    "Built with Python • Pandas • Plotly • Streamlit"
+)
+
+st.sidebar.divider()
 
 # ============================================================
 # LAZY SEGMENTATION
