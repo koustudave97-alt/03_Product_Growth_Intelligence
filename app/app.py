@@ -142,9 +142,8 @@ def load_data():
 
 
 try:
-
     events, events_enriched = (
-        load_events_data()
+        load_data()
     )
 
 except Exception as error:
