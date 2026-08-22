@@ -820,15 +820,6 @@ st.sidebar.subheader(
     "🔍 Analysis Controls"
 )
 
-
-# ============================================================
-# ANALYSIS CONTROLS
-# ============================================================
-
-st.sidebar.subheader(
-    "🔍 Analysis Controls"
-)
-
 min_date = (
     events["date_day"]
     .min()
